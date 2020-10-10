@@ -10,21 +10,34 @@ class ImageList extends StatelessWidget{
    return ListView.builder(
      itemCount: images.length,
      itemBuilder: (context,int index){
-      return Container(
-        margin: EdgeInsets.all(20.0),
-        padding: EdgeInsets.all(20.0),
-        child:Image.network(images[index].url) ,
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.grey,
-
-          )
-        ),
-        //Image.network(images[index].url);
-      );
+      return buildImage(images[index]);
 
 
      },
    );
   }
+
+  Widget buildImage(ImageModel image) {
+    return Container(
+      decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.grey,
+          )
+      ),
+      margin: EdgeInsets.all(20.0),
+      padding: EdgeInsets.all(20.0),
+      child: Column(
+        children: [
+          Image.network(image.url),
+          Padding(
+              padding: EdgeInsets.only(top: 8.0),
+            child: Text(image.title),
+          )
+
+        ],
+      ) ,
+
+    );
+  }
+
 }
